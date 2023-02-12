@@ -1,0 +1,21 @@
+.login-page{
+   
+    min-height: calc(100vh - 4rem);
+ 
+    place-items: center;
+}
+.form-group{
+    border: 3px solid $blue;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.form-link{
+
+
+    font-size: small;
+    text-decoration: underline;
+}
+

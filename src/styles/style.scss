@@ -1,0 +1,45 @@
+@import './base/base';
+@import './base//settings';
+@import "~bootstrap/scss/bootstrap";
+
+
+@import "../components/ContainerStyle";
+
+@import "../components//main/header/header";
+@import "../components/main//Login/login";
+ @import "../components/main/Footer/footer";
+ @import "../components/main/Home/home";
+
+
+ @import "../components/chatroom/style/addMessage";
+ @import "../components/chatroom/style/chatroom";
+ @import "../components/chatroom/style/chatroomUsers";
+ @import "../components/chatroom/style/chatroomMain";
+ @import "../components/chatroom/style/message";
+ 
+ @import "../components/rooms/rooms";
+ 
+ 
+
+//@import "styles/**/*.scss";
+
+
+
+
+
+
+
+
+*{
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+}
+body{
+    margin: 0;
+}
+%a-nav{
+    text-decoration: none;
+    color: white;
+    margin: 0 1rem;
+}

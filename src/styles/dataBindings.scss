@@ -1,0 +1,82 @@
+:root{
+    --square-bg-color:#000;
+}
+
+
+.headline{
+    background: #ccc;
+}
+*{
+    margin: auto;
+}
+
+
+.color-block{
+    border: 1px solid #000;
+    width: 300px;
+    aspect-ratio: 1;
+    margin: auto;
+    background: var(--square-bg-color);
+   
+        color: #fff;
+        div{
+            background: #000;
+            span{
+                color: yellow;
+            }
+        }
+}
+.div-show{
+    border: 1px solid #000;
+    width: 300px;
+    aspect-ratio: 1;
+    margin: auto;
+}
+
+.shape{
+    border: 3px solid #000;
+    width: 300px;
+    aspect-ratio: 1;
+    margin: auto;
+    background: purple;
+    &.circle{
+        border-radius: 50%;
+    }
+}
+.messages{
+    border: 1px solid #444;
+    .message{
+        display: flex;
+    }
+}
+
+.damka{
+    border: 3px solid #000;
+    aspect-ratio: 1;
+    display: grid;
+    grid-template-columns: repeat(8,1fr);
+    grid-template-rows: repeat(8,1fr);
+    div{
+        aspect-ratio: 1;
+        width: 3rem;
+display: grid;
+place-items: center;
+        div.figure{
+            border-radius: 50%;
+            background: red;
+            aspect-ratio: 1;
+            width: 2rem;
+        }
+        
+    }
+    div.black{
+        background-color: #000;
+
+    }
+    div.white{
+        background-color: #fff;
+
+    }
+    
+
+}

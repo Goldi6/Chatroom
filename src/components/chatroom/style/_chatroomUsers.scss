@@ -1,0 +1,32 @@
+.chatroom__users,.chatroom__choice{
+    background: $blue;
+    width: 100%;
+    height: 100%;
+    padding: 2rem 1rem;
+    color: #ccc;
+
+    h3{
+        padding: 0 1rem;
+        font-weight: bold;
+        font-size: small;
+    }
+    input{
+        font-size: 0.75rem;
+    }
+    input:focus{
+        box-shadow: none;
+    
+        
+    }
+}
+
+.user,.choice{
+    padding: 0.5rem 2rem;
+    margin: 0.5rem 0;
+    font-size: 0.75rem;
+    cursor: pointer;
+    &:hover{
+        background: #ccc;
+        color: #333;
+    }
+}
