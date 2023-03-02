@@ -1,14 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { CiSearch } from "react-icons/ci";
 import PrivetMessage from "./PrivetMessage";
 import { ChatroomContext } from "../../context/chatroomContext";
+import Loader from "../main/Loader/Loader";
 
 const ChatroomUsers = () => {
   const { chatroomState } = useContext(ChatroomContext);
   const [usersToShow, setUsersToShow] = useState([...chatroomState.users]);
   const [privetMessageUser, setPrivetMessageUser] = useState(null);
+
+  useEffect(() => {
+    console.log(chatroomState.users);
+    setUsersToShow([...chatroomState.users]);
+  }, [chatroomState.users]);
 
   const onInputFilterUsers = (e) => {
     const searchValue = e.target.value.trim();
@@ -41,16 +47,17 @@ const ChatroomUsers = () => {
         </InputGroup.Text>
       </InputGroup>
       <h3>Users:</h3>
-      {usersToShow.map((user) => {
-        return (
-          <div
-            className="user"
-            key={user.id}
-            onClick={() => setPrivetMessageUser(user)}>
-            {user.username}
-          </div>
-        );
-      })}
+      {usersToShow.length > 0 &&
+        usersToShow.map((user) => {
+          return (
+            <div
+              className="user"
+              key={user.id}
+              onClick={() => setPrivetMessageUser(user)}>
+              {user.username}
+            </div>
+          );
+        })}
       {!!privetMessageUser && (
         <PrivetMessage
           user={privetMessageUser}

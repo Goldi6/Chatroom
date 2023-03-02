@@ -5,9 +5,12 @@ import validator from "validator";
 import { ChatroomContext } from "../../context/chatroomContext";
 import { addMessageAction } from "../../actions/chatroomActions";
 import { nanoid } from "nanoid";
+import { UserContext } from "../../context/userContext";
 
 const AddMessage = (props) => {
   const { chatroomDispatch } = useContext(ChatroomContext);
+  const { userData } = useContext(UserContext);
+
   const onSubmit = (e) => {
     e.preventDefault();
     const message = e.target.querySelector("#message-input").value.trim();
@@ -18,7 +21,7 @@ const AddMessage = (props) => {
         addMessageAction({
           message,
           id: nanoid(),
-          user: { username: "ReactUser", id: 12345 },
+          user: userData.user,
         })
       );
       e.target.reset();

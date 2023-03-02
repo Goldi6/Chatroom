@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../../context/userContext";
+import { userLogoutAction } from "../../../actions/userActions";
+import { deleteUserFromCookie } from "../../../cookies/cookies";
 const Header = () => {
   const { userData, userDispatch } = useContext(UserContext);
-  console.log("state", userData);
   const navigate = useNavigate();
 
   const logout = () => {
-    userDispatch({ type: "LOGOUT" });
+    userDispatch(userLogoutAction());
+    deleteUserFromCookie();
     navigate("/home");
   };
 
@@ -28,16 +30,16 @@ const Header = () => {
             className={({ isActive }) => (isActive ? " active" : "")}>
             Rooms
           </NavLink>
-          {false ? (
+          {userData.user ? (
+            <div onClick={logout} className="header__logout-nav">
+              Logout
+            </div>
+          ) : (
             <NavLink
               className={({ isActive }) => (isActive ? " active" : "")}
               to="/login">
               Login
             </NavLink>
-          ) : (
-            <div onClick={logout} className="header__logout-nav">
-              Logout
-            </div>
           )}
         </div>
       </div>

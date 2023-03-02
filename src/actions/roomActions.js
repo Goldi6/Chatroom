@@ -9,3 +9,8 @@ export const setRoom = (room) => ({
   type: "SET_ROOM",
   room,
 });
+
+export const setRooms = (rooms) => ({
+  type: "SET_ROOMS",
+  rooms,
+});

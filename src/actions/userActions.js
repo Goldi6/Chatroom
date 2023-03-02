@@ -1,7 +1,7 @@
-export const userLoginAction = (userCredentials = {}) => ({
+export const userLoginAction = ({ user, token }) => ({
   type: "USER_LOGIN",
-  // userCredentials,
-  user: { username: "ReactUser", id: "12345" },
+  user,
+  token,
 });
 
 export const userLogoutAction = () => ({

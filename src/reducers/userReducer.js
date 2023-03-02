@@ -1,4 +1,6 @@
-export const initialUserData = { user: null };
+import Cookies from "js-cookie";
+
+export const initialUserData = { user: null, token: "" };
 
 export default function userReducer(userData, action) {
   // const myUser = { username: "ReactUser", id: 12345 };
@@ -14,9 +16,11 @@ export default function userReducer(userData, action) {
       // } else {
       //   return undefined;
       // }
-      return { user: { ...action.user } };
+
+      return { user: { ...action.user }, token: action.token };
     case "USER_LOGOUT":
-      return { user: null };
+      Cookies.remove("token");
+      return { user: null, token: "" };
     default:
       return { ...userData };
   }

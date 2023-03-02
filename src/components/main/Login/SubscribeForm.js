@@ -8,6 +8,9 @@ import validator from "validator";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../context/userContext";
 import { userLoginAction } from "../../../actions/userActions";
+import { subscribeToSite } from "../../../server/auth";
+import authErrorHandler from "../../../errorHandlers/authErrorHandler";
+import { saveUserOnCookie } from "../../../cookies/cookies";
 
 const LoginForm = (props) => {
   const { userDispatch } = useContext(UserContext);
@@ -20,6 +23,7 @@ const LoginForm = (props) => {
     email: "",
     password: "",
     passwordRepeat: "",
+    general: "",
   });
   const [isValidInputs_array, setIsValidInputs_array] = useState({
     username: true,
@@ -151,7 +155,9 @@ const LoginForm = (props) => {
     inputValue,
     inputName,
     validateCallBack,
-    invalidInputMessage
+    invalidInputMessage,
+    setterForMessages,
+    setterForValidInputs
   ) => {
     const errorMessages = { ...invalidInput_message };
     const validInputsArray = { ...isValidInputs_array };
@@ -182,8 +188,18 @@ const LoginForm = (props) => {
     e.preventDefault();
     ///console.log("login form ", username, age, email, password);
 
-    userDispatch(userLoginAction());
-    navigate("/rooms", { replace: true });
+    subscribeToSite(email, password)
+      .then((userData) => {
+        userDispatch(userLoginAction(userData));
+        saveUserOnCookie(userData);
+
+        navigate("/rooms", { replace: true });
+      })
+      .catch((err) => {
+        const errorMessage = authErrorHandler(err);
+
+        setInvalidInput_message({ ...invalidInput_message, ...errorMessage });
+      });
   };
 
   const inputs = [
@@ -243,7 +259,9 @@ const LoginForm = (props) => {
     <Form onSubmit={onSubmitForm}>
       <Form.Group controlId="form-group-id" className="form-group">
         <h3>Subscribe</h3>
-
+        <Form.Text className="text-danger">
+          {invalidInput_message.general}
+        </Form.Text>
         {inputs.map((inp, i) => {
           return (
             <Fragment key={i}>

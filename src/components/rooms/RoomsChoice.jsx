@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Link } from "react-router-dom";
@@ -7,6 +7,9 @@ import { CiSearch } from "react-icons/ci";
 
 export default function RoomsChoice({ items }) {
   const [itemsToShow, setItemsToShow] = useState(items);
+  useEffect(() => {
+    setItemsToShow(items);
+  }, [items]);
   //const [privetMessageUser, setPrivetMessageUser] = useState(null);
   const onInputFilterUsers = (e) => {
     const searchValue = e.target.value.trim();
@@ -33,16 +36,16 @@ export default function RoomsChoice({ items }) {
           <CiSearch />
         </InputGroup.Text>
       </InputGroup>
-      {itemsToShow.map((item) => {
+      {itemsToShow.map((chatroom) => {
         return (
           <Link
-            to={`/chatroom/${item.name}`}
-            key={item.id}
+            to={`/chatroom/${chatroom.id}`}
+            key={chatroom.id}
             className="choice"
 
             //  onClick={() => setPrivetMessageUser(user)}
           >
-            {item.name}
+            {chatroom.name}
           </Link>
         );
       })}

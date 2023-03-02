@@ -2,3 +2,13 @@
 
     grid-template-columns: 30% 70%;
 }
+
+.loader-container{
+    height: calc(100vh - 4rem);
+    width: 100%;
+    display: grid;
+    place-items: center;
+    .lds-roller div:after {
+        background: #666;
+    }
+}
